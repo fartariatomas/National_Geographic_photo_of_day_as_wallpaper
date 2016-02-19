@@ -15,7 +15,7 @@ def find_NatGeo_img_url():
 
 
 def download_img(imgLink):
-	file_name = "/home/tomas/Pictures/" + str(datetime.datetime.now().date()) + ".jpg"
+	file_name = "/home/tomas/Pictures/wallpapers/" + str(datetime.datetime.now().date()) + ".jpg"
 	r2 = rq.get(imgLink)
 	if r2.status_code == 200:
 	    with open(file_name, 'wb') as f:
