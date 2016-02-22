@@ -15,16 +15,16 @@ def find_NatGeo_img_url():
 
 
 def download_img(imgLink):
-	file_name = "/home/tomas/Pictures/wallpapers/" + str(datetime.datetime.now().date()) + ".jpg"
+	img_path = "/home/tomas/Pictures/wallpapers/" + str(datetime.datetime.now().date()) + ".jpg"
 	r2 = rq.get(imgLink)
 	if r2.status_code == 200:
-	    with open(file_name, 'wb') as f:
+	    with open(img_path, 'wb') as f:
 	        #r2.raw.decode_content = True
 	        #shutil.copyfileobj(r2.raw, f)
 	        f.write(r2.content)
 	del r2
 	print("image saved")
-	return file_name
+	return img_path
 
 def set_img_as_wallpaper(img_path):
 	os.system('gsettings set org.gnome.desktop.background picture-uri file://' + img_path)
