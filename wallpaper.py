@@ -4,6 +4,8 @@ import datetime
 import os
 
 
+# definition of necessary functions
+#####################
 def find_NatGeo_img_url():
     photo_site = "http://photography.nationalgeographic.com/photography/photo-of-the-day/"
     r = rq.get(photo_site)
@@ -21,8 +23,6 @@ def download_img(imgLink):
     r2 = rq.get(imgLink)
     if r2.status_code == 200:
         with open(img_path, 'wb') as f:
-            #r2.raw.decode_content = True
-            #shutil.copyfileobj(r2.raw, f)
             f.write(r2.content)
     del r2
     print("image saved")
@@ -30,8 +30,7 @@ def download_img(imgLink):
 
 
 def set_img_as_wallpaper(img_path):
-    os.system(
-        'gsettings set org.gnome.desktop.background picture-uri file://' + img_path)
+    os.system("gsettings set org.gnome.desktop.background picture-uri file://" + img_path)
     print("wallpaper set")
 
 
@@ -40,6 +39,6 @@ def main():
     img_path = download_img(imgLink)
     set_img_as_wallpaper(img_path)
 
-
+###########################
 if __name__ == "__main__":
     main()
